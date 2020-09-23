@@ -1,0 +1,33 @@
+body {
+    padding: 20px;
+}
+
+.button-align {
+    text-align: center;
+}
+#division {
+    background-color: rgba(255, 255, 255, 0.699);
+    text-align: center;
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+    margin: 10px;
+}
+.division_link {
+    color: black;
+    text-decoration: none;
+}
+
+.division_link:hover {
+    color: black;
+    text-decoration: none;
+}
+#header {
+    z-index: unset;
+}
+
+#Comment_id {
+    background-color: rgba(0, 0, 255, 0.322);
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+}

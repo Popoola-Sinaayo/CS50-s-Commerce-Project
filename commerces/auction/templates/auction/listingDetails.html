@@ -1,0 +1,107 @@
+{% extends "auction/layout.html" %}
+
+{% block script %}
+
+<script>
+    $(document).ready(function () {
+        $("#form").hide();
+        $("#AddBid").click(function () {
+            $("#form").toggle(1000)
+        });
+        $("#CommentForm").hide();
+        $("#Comment").click(function () {
+            $("#CommentForm").toggle(1000)
+        });
+        $("#ShowComment").hide()
+        $("#ShowCommentsMades").click(function () {
+            $("#ShowComment").toggle(1000)
+        })
+    }
+    )
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Listing: {{listDetails.Title}}</h1>
+
+<img src=" {{listDetails.Image}} " alt=" {{listDetails.Title}} ">
+
+<p> {{listDetails.Description}} </p>
+<br>
+<p>Current Bid: ${{listDetails.Bid}}.00 </p>
+<p>Category: {{listDetails.Category}} </p>
+<p>ImageUrl: {{listDetails.ImageUrl}}</p>
+<p>Time Created: {{listDetails.Time}} </p>
+<p>{{No_Bid}} Bid(s) so far</p>
+<p><strong>Original Bid: ${{listDetails.Bid}}.00</strong></p>
+{% if Bid %}
+<p><strong> Current Bid: ${{Bid}}.00 </strong></p>
+{% else %}
+<p>No Bid For This Listing Yet!</p>
+{% endif %}
+<div class="button-align">
+    <button id="AddBid" class="btn btn-primary">Bid</button>
+</div>
+
+<div id="form">
+    <br>
+    <form action=" {% url 'Check_Bid' %} " method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="number" name="Bid" placeholder="Place Bid">
+        </div>
+        <input type="hidden" name="Bid_Initial" value=" {{Bid}} ">
+        <input type="hidden" name="Initial_Bid" value="{{ listDetails.Bid }}">
+        <input type="hidden" name="Id" value=" {{ listDetails.id }} ">
+        <input type="hidden" name="user" value="{{user.username}}">
+        <input class="btn btn-primary" type="submit" value="Place Bid">
+    </form>
+</div>
+<br>
+<div class="button-align">
+    <button id="Comment" class="btn btn-primary">Make comment</button>
+</div>
+<br>
+<div id="CommentForm">
+    <form action=" {% url 'comment' %} " method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea name="Comment" class="form-control" cols="30" rows="10" placeholder="Comment"></textarea>
+        </div>
+        <input type="hidden" name="Id" value="{{listDetails.id}}">
+        <input type="hidden" name="user" value="{{user.username}}">
+        <input class="btn btn-primary" type="submit" value="Comment">
+    </form>
+</div>
+
+<div class="button-align">
+    <button id="ShowCommentsMades" class="btn btn-primary">Show Comments Made By Others</button>
+</div>
+<div id="ShowComment">
+
+    {% if Comment %}
+    {% for comment in Comment %}
+    <div id="Comment_id">
+        <p><Strong>{{ comment.Comment_By }}</Strong> </p>
+        <p>{{ comment.Comment }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No Comments for this listing</p>
+    {% endif %}
+
+</div>
+
+<br>
+<p>Listed by {{ listDetails.List_Creator }}</p>
+<br>
+{% if listDetails.List_Creator == user.username %}
+<a href=" {% url 'removelisting' listDetails.id %} ">Remove Listing</a>
+<br>
+<br>
+{% endif %}
+<a href=" {% url 'index' %} ">Back To Full Listing</a>
+
+{% endblock %}

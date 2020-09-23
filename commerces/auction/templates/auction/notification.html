@@ -1,0 +1,15 @@
+{% extends "auction/layout.html" %}
+
+{% block body %}
+
+{% if notification %}
+
+{{ Notify.Notifications }}
+
+{% else %}
+
+<h1>No Notification</h1>
+
+{% endif %}
+
+{% endblock %}

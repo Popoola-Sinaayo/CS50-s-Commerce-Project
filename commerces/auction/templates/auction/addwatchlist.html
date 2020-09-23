@@ -1,0 +1,33 @@
+{% extends "auction/layout.html" %}
+
+{% block body %}
+<h2>Add to Watchlist</h2>
+{% for list in lists %}
+<a href="{% url 'watchlist' list.id %}" class="division_link">
+    <div id="division">
+        <h1> {{ list.Title }} </h1>
+
+        <p>Description: {{ list.Description }} </p>
+
+        <p> Category: {{ list.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ list.Image }}" alt="Image">
+
+        <p>Bid: ${{ list.Bid }}</p>
+
+        <p>Created: {{list.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+</a>
+{% empty %}
+<br>
+<br>
+<p>No active Listings</p>
+
+{% endfor %}
+
+{% endblock %}

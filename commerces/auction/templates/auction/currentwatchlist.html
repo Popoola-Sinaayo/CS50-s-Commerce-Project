@@ -1,0 +1,32 @@
+{% extends "auction/layout.html" %}
+
+{% block body %}
+<h2>Current Wacthlist</h2>
+{% for list in lists %}
+<a href="{% url 'listDetails' list.id %}" class="division_link">
+    <div id="division">
+        <h1> {{ list.Title }} </h1>
+
+        <p>Description: {{ list.Description }} </p>
+
+        <p> Category: {{ list.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ list.Image }}" alt="Image">
+
+        <p>Bid: ${{ list.Bid }}.00</p>
+
+        <p>Created: {{list.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+</a>
+</div>
+<a href=" {% url 'removewatch' list.id %} "> Remove From Watchlist </a>
+{% empty %}
+<br>
+<br>
+<p>No active Wacthlist</p>
+{% endfor %}
+{% endblock %}

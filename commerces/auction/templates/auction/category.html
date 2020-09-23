@@ -1,0 +1,220 @@
+{% extends "auction/layout.html" %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $("#All").hide();
+        $("#AllButton").click(function () {
+            $("#All").toggle(1000)
+        });
+        $("#Electronics").hide();
+        $("#AllElectronics").click(function () {
+            $("#Electronics").toggle(1000)
+        });
+        $("#Books").hide();
+        $("#AllBooks").click(function () {
+            $("#Books").toggle(1000)
+        });
+        $("#Home").hide()
+        $("#AllHome").click(function () {
+            $("#Home").toggle(1000)
+        })
+        $("#Fashion").hide()
+        $("#AllFashion").click(function () {
+            $("#Fashion").toggle(1000)
+        })
+        $("#Toys").hide();
+        $("#AllToys").click(function () {
+            $("#Toys").toggle(1000)
+        })
+    })
+</script>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="button-align">
+    <button id="AllButton" class="btn btn-primary">All</button>
+</div>
+<br>
+{% if All %}
+<div id="All">
+    {% for all in All %}
+    <div id="division">
+        <h1> {{ all.Title }} </h1>
+
+        <p>Description: {{ all.Description }} </p>
+
+        <p> Category: {{ all.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ all.Image }}" alt="Image">
+
+        <p>Bid: ${{ all.Bid }}.00</p>
+
+        <p>Created: {{all.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="button-align">
+    <button id="AllBooks" class="btn btn-primary">Books</button>
+</div>
+<br>
+<div id="Books">
+    {% if Books %}
+    {% for book in Books %}
+    <div id="division">
+        <h1> {{ book.Title }} </h1>
+
+        <p>Description: {{ book.Description }} </p>
+
+        <p> Category: {{ book.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ book.Image }}" alt="Image">
+
+        <p>Bid: ${{ book.Bid }}.00</p>
+
+        <p>Created: {{book.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Nothing in this Category</p>
+</div>
+{% endif %}
+<div class="button-align">
+    <button id="AllHome" class="btn btn-primary">Home</button>
+</div>
+<br>
+<div id="Home">
+    {% if Home %}
+    {% for home in Home %}
+    <div id="division">
+        <h1> {{ home.Title }} </h1>
+
+        <p>Description: {{ home.Description }} </p>
+
+        <p> Category: {{ home.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ home.Image }}" alt="Image">
+
+        <p>Bid: ${{ home.Bid }}.00</p>
+
+        <p>Created: {{home.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Nothing in this Category</p>
+</div>
+{% endif %}
+
+<div class="button-align">
+    <button id="AllFashion" class="btn btn-primary">Fashion</button>
+</div>
+<br>
+<div id="Fashion">
+    {% if Fashion %}
+    {% for fashion in Fashion %}
+    <div id="division">
+        <h1> {{ fashion.Title }} </h1>
+
+        <p>Description: {{ fashion.Description }} </p>
+
+        <p> Category: {{ fashion.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ fashion.Image }}" alt="Image">
+
+        <p>Bid: ${{ fashion.Bid }}.00</p>
+
+        <p>Created: {{fashion.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Nothing in this Category</p>
+    {% endif %}
+</div>
+
+<div class="button-align">
+    <button id="AllToys" class="btn btn-primary">Toys</button>
+</div>
+<br>
+<div id="Toys">
+    {% if Toys %}
+    {% for toys in Toys %}
+    <div id="division">
+        <h1> {{ toys.Title }} </h1>
+
+        <p>Description: {{ toys.Description }} </p>
+
+        <p> Category: {{ toys.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ toys.Image }}" alt="Image">
+
+        <p>Bid: ${{ toys.Bid }}.00</p>
+
+        <p>Created: {{toys.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Nothing in this Category</p>
+    {% endif %}
+</div>
+
+<div class="button-align">
+    <button id="AllElectronics" class="btn btn-primary">Electronics</button>
+</div>
+<div id="Electronics">
+    {% if Electronics %}
+    {% for electronics in Electronics %}
+    <div id="division">
+        <h1> {{ electronics.Title }} </h1>
+
+        <p>Description: {{ electronics.Description }} </p>
+
+        <p> Category: {{ electronics.Category }} </p>
+
+        <p>Image Url:
+            <!-- <a href="{{ list.Image_Url }}">Pictures.....</a> -->
+        </p>
+        <img src="{{ electronics.Image }}" alt="Image">
+
+        <p>Bid: ${{ electronics.Bid }}.00</p>
+
+        <p>Created: {{electronics.Time}}
+            <!-- {{year}}, {{month}} {{day}}. Time: {{hour}}:{{minute}}-->
+        </p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Nothing in this Category</p>
+</div>
+{% endif %}
+
+
+{% endblock %}

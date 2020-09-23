@@ -1,0 +1,48 @@
+{% extends "auction/layout.html" %}
+
+{% block body %}
+
+<h1>Add New Listins</h1>
+
+<form action=" {% url 'list' %} " method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input autofocus class="form-control" type="text" name="Title" placeholder="Title">
+    </div>
+    <label for="Description">Description</label>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Description" placeholder="Add Description">
+    </div>
+    <div class="form-group">
+        <label for="Image URL">Image URL</label>
+        <input class="form-control" type="text" name="ImageUrl"
+            placeholder="Type in the url of the imagw to your Listings">
+    </div>
+    <label for="Bid">Place Bid</label>
+    <div class="form-group">
+        <input class="form-control" type="number" name="Bid" placeholder="Place Bid">
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="hidden" name="List_Creator" value="{{ user.username }}">
+    </div>
+    <label for="Category">Category</label>
+    <div class="form-group">
+        <select name="Category" id="Category" class="form-control">
+            <datalist id="Category">
+                <option value="" checked disabled>Choose Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Toys">Toys</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Home">Home</option>
+                <option value="Books">Books</option>
+            </datalist>
+        </select>
+    </div>
+    <div class="button-align">
+        <input class="btn btn-primary" class="button" type="submit" value="Add List">
+    </div>
+</form>
+
+
+{% endblock %}
